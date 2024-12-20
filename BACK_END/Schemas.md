@@ -20,6 +20,16 @@ class InitOutput(BaseModel):
     error: Optional[str] = Field(None,)
 
     status_code: Optional[int] = Field(None,)
+
+
+
+class FinalOutput(BaseModel):
+
+    user_id: int = Field(..., ge=ID_LEN_MIN, le=ID_LEN_MAX)
+
+    message: str = Field(...,)
+
+    error: Optional[str] = Field(None,)
 ```
 
 token - произвольный набор символов, заранее одинаковый для бота и апи, нужен для блокирования отправки запроса третьей стороной
@@ -42,6 +52,12 @@ class Got_from_ai(BaseModel):
     message: str = Field(...,)
 
     error: Optional[str] = Field(None,)
+
+
+
+class API_Response(BaseModel):
+
+    msg_status: str = Field(...,)
 ```
 
 req_id - уникальный номер реквеста, 64 бита, используется для идентификации запроса и адресного ответа
